@@ -92,6 +92,10 @@ def load_stations() -> list[dict]:
 
 
 def load_schools() -> list[dict]:
+    if not SCHOOLS_FILE.exists():
+        print("Warning: no school dataset found. School map enrichment will be skipped.")
+        return []
+
     df = pd.read_csv(SCHOOLS_FILE, encoding="latin1", low_memory=False)
     df = df[df["EstablishmentStatus (name)"].fillna("").str.upper() == "OPEN"].copy()
     df = df[df["GOR (name)"].fillna("").str.upper() == "LONDON"].copy()
@@ -268,3 +272,4 @@ def summarize_schools(latitude: float, longitude: float, grid_index: dict, fallb
         "nearby_primary_schools_1km": primary_count_1km,
         "nearby_secondary_schools_2km": secondary_count_2km,
     }
+
