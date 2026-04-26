@@ -304,3 +304,29 @@ Without SMTP configuration, the rest of the app still works, but the contact for
 During the project development, the main focus shifted towards processing and structuring suitable datasets to support a reliable machine-learning pipeline and property price predictions, with particular emphasis on qualitative features such as proximity to schools and stations, recent crime levels, and the House Price Index. These features were informed by earlier stakeholder interviews with estate agents in order to align the final system with the main project objectives
 
 
+
+
+
+
+## Datasets used and considered
+
+TFL dataset -  https://tfl.gov.uk/info-for/open-data-users/our-open-data?utm_source=chatgpt.com#on-this-page-1
+
+Price paid dataset : https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads?utm_source=chatgpt.com#february-2026-data-current-month
+
+Station footfall - https://tfl.gov.uk/corporate/publications-and-reports/network-demand-data?utm_source=chatgpt.com#on-this-page-2
+
+School rating - https://www.gov.uk/government/statistical-data-sets/monthly-management-information-ofsteds-school-inspections-outcomes?utm_source=chatgpt.com
+
+School proximity - https://get-information-schools.service.gov.uk/Downloads
+Crime levels - https://data.london.gov.uk/dataset/mps-recorded-crime-geographic-breakdown-exy3m/
+
+Deprivation areas - https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019?utm_source=chatgpt.com
+
+House price index - https://www.gov.uk/government/collections/uk-house-price-index-reports?utm_source=chatgpt.com
+
+Greenery proximity - https://osdatahub.os.uk/data/downloads/open
+
+EPC ratings - https://epc.opendatacommunities.org/docs/api
+
+MPC recorded crime : https://data.london.gov.uk/dataset/mps-recorded-crime-geographic-breakdown-exy3m/
