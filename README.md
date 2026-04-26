@@ -83,6 +83,8 @@ For GitHub submission the file with database is
 
 This compact database is suitable for the selected project postcodes and is small enough to include in a normal repository. Application therefore automatically uses `db/submission_database.db` if `db/database.db` is not present
 
+The submitted database is a post-processed project dataset created by combining multiple raw data sources, cleaning inconsistent records, matching property information across datasets, and enriching the final data with features such as sold-price history, school and station proximity, crime context, and house price index values. Unfortunately, the initial database size was too large (more than 1.5 GB) which is not the size allowed for GitHub thus the solution above was implemented 
+
 ### Quick start
 
 If you download the project from GitHub, download it as a ZIP, extract it, and run the commands below from inside the extracted project folder
