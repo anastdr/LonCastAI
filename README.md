@@ -228,10 +228,10 @@ No login is required.
 
 Sample postcodes that are loaded in the current project dataset:
 
-- `SW5 9SX`
-- `SW7 1RH`
-- `W8 6SU`
-- `SW3 6SH`
+SW7 3EG
+SW7 2ST
+W8 5PT
+SW3 1AW
 
 These are useful for testing because the current processed dataset is intentionally limited to selected postcode areas.
 
