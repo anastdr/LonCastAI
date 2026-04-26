@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LonCastAI | London Property Forecasts</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/frontend/styles.css?v=20260422-postcode-suggestions" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="LonCastAI home">
+        <img src="/frontend/assets/loncastai-logo-header.png" alt="LonCastAI" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">London short-term property intelligence</p>
+          <h1>Forecast London property prices with explainable AI.</h1>
+          <p>
+            Search a postcode, choose a property, and compare the baseline estimate,
+            machine-learning prediction, and mixed prediction with clear reasoning.
+          </p>
+          <div class="hero-stats" aria-label="LonCastAI feature summary">
+            <span><strong>3</strong> prediction views</span>
+            <span><strong>Local</strong> schools, stations, crime and HPI</span>
+            <span><strong>ML</strong> plus transparent baseline</span>
+          </div>
+        </div>
+
+        <form id="searchForm" class="search-panel" novalidate>
+          <label for="postcodeInput">Property postcode</label>
+          <div class="search-row">
+            <div class="postcode-field">
+              <input id="postcodeInput" name="postcode" type="text" placeholder="Enter postcode, e.g. SW5 9SX" autocomplete="postal-code" autocapitalize="characters" spellcheck="false" />
+              <div id="autocompleteResults" class="autocomplete-results" role="listbox" aria-label="Matching properties" hidden></div>
+            </div>
+            <input id="queryInput" name="query" type="text" placeholder="Optional flat or door no." autocomplete="street-address" spellcheck="false" />
+            <button type="submit">Search</button>
+            <button id="saveSearchButton" type="button" class="secondary">Save search</button>
+          </div>
+          <p id="formHint" class="form-hint">Use a full loaded postcode such as SW5 9SX, SW7 1RH, W8 6SU, or SW3 6SH. Lowercase is accepted.</p>
+          <div id="errorBox" class="message error" role="alert" hidden></div>
+          <div id="successBox" class="message success" role="status" hidden></div>
+        </form>
+      </section>
+
+      <section id="mapSection" class="dashboard" aria-live="polite">
+        <div class="map-card" aria-label="Interactive London property map">
+          <div id="propertyMap" class="real-map"></div>
+          <div class="map-status">
+            <strong id="mapStatusTitle">London map</strong>
+            <span id="mapStatusText">Search a postcode to focus on the property area.</span>
+          </div>
+        </div>
+
+        <aside class="result-card">
+          <div id="emptyState" class="empty-state">
+            <p class="kicker">Ready to forecast</p>
+            <h2>Start with a postcode.</h2>
+            <p>Predictions will appear here with model confidence, transport, schools, crime, and HPI context.</p>
+          </div>
+
+          <div id="estimatePanel" hidden>
+            <p class="kicker">Prediction summary</p>
+            <h2 id="mainPrediction">£0</h2>
+            <p id="selectedAddress" class="muted"></p>
+            <div class="confidence-meter" aria-label="Prediction confidence">
+              <span></span>
+            </div>
+            <div id="lastSoldPanel" class="last-sold-panel"></div>
+            <div class="prediction-grid">
+              <article>
+                <span>Baseline</span>
+                <strong id="baselinePrediction">£0</strong>
+              </article>
+              <article>
+                <span>ML</span>
+                <strong id="mlPrediction">£0</strong>
+              </article>
+              <article>
+                <span>Mixed</span>
+                <strong id="mixedPrediction">£0</strong>
+              </article>
+            </div>
+            <h3>What is driving this?</h3>
+            <ul id="explanationList"></ul>
+            <button id="detailsToggle" class="link-button" type="button">See full explanation</button>
+          </div>
+        </aside>
+      </section>
+
+      <section id="suggestionsSection" class="suggestions" hidden>
+        <div class="section-heading">
+          <p class="eyebrow">Choose property</p>
+          <h2>Matching addresses</h2>
+        </div>
+        <div id="suggestionsList" class="suggestion-list"></div>
+      </section>
+
+      <section id="about" class="content-section">
+        <div>
+          <p class="eyebrow">About us</p>
+          <h2>Built for clearer property decisions.</h2>
+        </div>
+        <p>
+          LonCastAI is a student-built advisory platform designed to make London property
+          estimates easier to understand. This placeholder section introduces the team,
+          the design approach, and the aim of combining historical sales, local amenities,
+          environmental context, and transparent explanations in one accessible interface.
+        </p>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <p class="eyebrow">Contact us</p>
+        <h2>Have something to say?</h2>
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <p>Let us know your questions, suggestions, and feedback about LonCastAI.</p>
+            <address>
+              <strong>Goldsmiths, University of London</strong>
+              8 Lewisham Way, New Cross, London SE14 6NW, United Kingdom
+            </address>
+            <div class="contact-links" aria-label="Contact shortcuts">
+              <a href="https://www.gold.ac.uk/" target="_blank" rel="noreferrer">Goldsmiths</a>
+              <a href="mailto:aderk001@campus.goldsmiths.ac.uk">Email</a>
+            </div>
+          </div>
+          <form id="contactForm" class="contact-form" action="javascript:void(0)" novalidate>
+            <label>
+              <span>Name</span>
+              <input name="name" type="text" placeholder="Enter your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" placeholder="Enter your email address" required />
+            </label>
+            <label class="contact-message">
+              <span>Message</span>
+              <textarea name="message" rows="3" placeholder="Write your message" required></textarea>
+            </label>
+            <button type="submit">Contact us</button>
+            <div id="contactStatus" class="contact-status" role="status" hidden></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div id="explanationModal" class="modal-backdrop" hidden>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button id="modalClose" class="modal-close" type="button" aria-label="Close full explanation">×</button>
+        <p class="eyebrow">Full explanation</p>
+        <h2 id="modalTitle">Why LonCastAI produced this estimate</h2>
+        <p id="modalAddress" class="muted"></p>
+        <ul id="modalExplanationList"></ul>
+      </section>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="/frontend/app.js?v=20260422-suggestion-no-scroll"></script>
+  </body>
+</html>
